@@ -1,0 +1,15 @@
+FROM opencv430:103
+RUN cd /root &&\
+ git clone https://github.com/AlexeyAB/darknet
+RUN cd /root/darknet &&\
+ sed -i 's/GPU=0/GPU=1/' Makefile && \
+ sed -i 's/CUDNN=0/CUDNN=1/' Makefile && \
+# sed -i 's/CUDNN_HALF=0/CUDNN_HALF=1/' Makefile && \
+ sed -i 's/OPENCV=0/OPENCV=1/' Makefile && \
+ sed -i 's/LIBSO=0/LIBSO=1/' Makefile && \
+ sed -i 's/-gencode arch=compute_61,code=\[sm_61,compute_61\]/#-gencode arch=compute_61,code=\[sm_61,compute_61\]/' Makefile && \
+ sed -i 's/# ARCH= -gencode arch=compute_53,code=\[sm_53,compute_53\]/ARCH= -gencode arch=compute_53,code=\[sm_53,compute_53\]/' Makefile
+RUN cd /root/darknet && \
+ make -j4 && \
+ echo "** Bye :)"
+CMD ["/bin/bash"]
