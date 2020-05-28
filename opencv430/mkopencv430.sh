@@ -1,5 +1,5 @@
-grep t186ref /etc/nv_tegra_release
 rm Dockerfile
+grep t186ref /etc/nv_tegra_release
 if [ $? = 0 ]; then
 	echo Using Dockerfile for XavierNX
 	cp Dockerfile.NX Dockerfile
@@ -14,9 +14,13 @@ else
 	fi
 fi
 
-cp -rp /usr/include/ .
+mkdir include
+cp -apd /usr/include/*cudnn* include
+mkdir include/aarch64-linux-gnu
+cp -apd /usr/include/aarch64-linux-gnu/*cudnn* include/aarch64-linux-gnu
 mkdir alternatives
 cp -apd /etc/alternatives/*cudnn* alternatives
-sudo docker build -t opencv430:103 .
+sudo docker build -t opencv430:104 .
+
 
 
