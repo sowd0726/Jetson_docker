@@ -1,4 +1,4 @@
-FROM opencv430:103
+FROM opencv430:104
 RUN cd /root &&\
  git clone https://github.com/AlexeyAB/darknet
 RUN cd /root/darknet &&\
