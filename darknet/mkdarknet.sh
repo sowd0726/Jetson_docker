@@ -1,6 +1,6 @@
 #!/bin/bash
-grep t186ref /etc/nv_tegra_release
 rm Dockerfile
+grep t186ref /etc/nv_tegra_release
 if [ $? = 0 ]; then
         echo Using Dockerfile for XavierNX
         cp Dockerfile.NX Dockerfile
