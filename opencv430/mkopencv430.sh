@@ -5,7 +5,7 @@ if [ $? = 0 ]; then
 	cp Dockerfile.NX Dockerfile
 else
 	grep t210ref /etc/nv_tegra_release
-	if [ $? = 0]; then
+	if [ $? = 0 ]; then
 		echo Using Dockerfile for Jetson NANO
 		cp Dockerfile.NANO Dockerfile
 	else
